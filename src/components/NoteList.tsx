@@ -11,29 +11,13 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ReactSelect from "react-select";
-import { Tag } from "../types";
+import {
+  EditTagsModalProps,
+  NoteListProps,
+  SimplifiedNote,
+  Tag,
+} from "../types";
 import styles from "./NoteList.module.css";
-
-type SimplifiedNote = {
-  tags: Tag[];
-  title: string;
-  id: string;
-};
-
-type NoteListProps = {
-  availableTags: Tag[];
-  notes: SimplifiedNote[];
-  onDeleteTag: (id: string) => void;
-  onUpdateTag: (id: string, label: string) => void;
-};
-
-type EditTagsModalProps = {
-  show: boolean;
-  availableTags: Tag[];
-  handleClose: () => void;
-  onDeleteTag: (id: string) => void;
-  onUpdateTag: (id: string, label: string) => void;
-};
 
 export function NoteList({
   availableTags,
@@ -60,18 +44,21 @@ export function NoteList({
 
   return (
     <>
-      <Row className="align-items-center mb-4">
+      <Row
+        className="align-items-center mb-4"
+        style={{ backgroundColor: "gray" }}
+      >
         <Col>
           <h1>Notes</h1>
         </Col>
         <Col xs="auto">
           <Stack gap={2} direction="horizontal">
             <Link to="/new">
-              <Button variant="primary">Create</Button>
+              <Button variant="primary">Create a new Note</Button>
             </Link>
             <Button
               onClick={() => setEditTagsModalIsOpen(true)}
-              variant="outline-secondary"
+              variant="primary"
             >
               Edit Tags
             </Button>
@@ -82,7 +69,9 @@ export function NoteList({
         <Row className="mb-4">
           <Col>
             <Form.Group controlId="title">
-              <Form.Label>Title</Form.Label>
+              <Form.Label>
+                <h4>Search with Title</h4>
+              </Form.Label>
               <Form.Control
                 type="text"
                 value={title}
@@ -92,7 +81,9 @@ export function NoteList({
           </Col>
           <Col>
             <Form.Group controlId="tags">
-              <Form.Label>Tags</Form.Label>
+              <Form.Label>
+                <h4>Search with Tags</h4>
+              </Form.Label>
               <ReactSelect
                 value={selectedTags.map((tag) => {
                   return { label: tag.label, value: tag.id };
