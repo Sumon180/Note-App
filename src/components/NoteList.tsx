@@ -49,7 +49,7 @@ export function NoteList({
         style={{ backgroundColor: "gray" }}
       >
         <Col>
-          <h1>Notes</h1>
+          <h4>Notes</h4>
         </Col>
         <Col xs="auto">
           <Stack gap={2} direction="horizontal">
