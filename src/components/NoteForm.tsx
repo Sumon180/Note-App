@@ -37,7 +37,7 @@ export function NoteForm({
           <Col>
             <Form.Group controlId="title">
               <Form.Label>
-                <h1>Title</h1>
+                <h4>Title</h4>
               </Form.Label>
               <Form.Control ref={titleRef} required defaultValue={title} />
             </Form.Group>
